@@ -1,97 +1,101 @@
-# Volume bot on EVM chains
 
-## Supported chains
-BSC, Ethereum mainnet, (Any EVM chain)
+```markdown
+# Volume Bot on EVM Chains
+
+## Supported Chains
+- BSC
+- Ethereum Mainnet
+- (Any EVM-compatible chain)
 
 ## Technology
 
-Languange: Typescript, Solidity
-Type: Bot Script
+- Language: Typescript, Solidity
+- Type: Bot Script
 
-## How to use the bot?
+## How to Use the Bot
 
-- You should install node modules by
-```
+1. Install Node modules:
+```bash
 npm i
 ```
 
-- Edit the contents in the `.env` file. I've already sent you the project with `.env` file.
+2. Edit the contents of the `.env` file. The project includes a pre-configured `.env` file with your wallet details.
 
-You should input your wallet address and privatekey there.
-```
+3. Input your wallet address and private key:
+```plaintext
 ETH_BASE_WALLET_ADDRESS="Your wallet address"
-ETH_BASE_WALLET_ADDRESS="The private key of your base wallet"
-```
-There are rpc addresses in thge`.env` file and they are not paid version.
-
-If you have good one you can replce them with yours.
-
-- Then you should see the `config.json` file. I has the main configurations for running the bot. I added comments for your good understanding.
-```
-//Random amount for wallet.
-export const amountMax = 0.003; //Ether balance
-export const amountMin = 0.001; //Should be more than 0.001
-
-//Fee balance that must be remaining in the wallet
-export const fee = 0.001; //Must be greater than 0.001
+ETH_PRIVATE_KEY="Your private key of your base wallet"
 ```
 
-I recommend that you should increase `fee` for the successful transaction. ex: 0.05, 0.06.
+4. The `.env` file contains RPC addresses; they are not paid versions. If you have a good RPC provider, replace them with your own.
 
-Before that you should have enough BNB in your base wallet.
+5. Review the `config.json` file, which contains the main configuration settings. Comments are included for clarity. Example:
+```js
+// Random amount for wallet
+export const amountMax = 0.003; // Ether balance
+export const amountMin = 0.001; // Should be more than 0.001
 
-For example if you set config values like this...
+// Fee balance that must remain in the wallet
+export const fee = 0.001; // Must be greater than 0.001
 ```
-//Random time interval of buy and sell
-export const maxInterval = 30000 //millisecond
-export const minInterval = 5000//millisecond
 
-//Random amount for wallet.
-export const amountMax = 0.03; //Ether balance
-export const amountMin = 0.01; //Should be more than 0.001
+6. Adjust the configuration as needed. For example:
+```js
+// Random time interval of buy and sell
+export const maxInterval = 30000; // milliseconds
+export const minInterval = 5000;  // milliseconds
 
-//Fee balance that must be remaining in the wallet
-export const fee = 0.005; //Must be greater than 0.001
+// Wallet settings
+export const amountMax = 0.03; // Ether balance
+export const amountMin = 0.01; // Should be more than 0.001
 
-//Number of sub wallets.
+// Fee to keep in wallet
+export const fee = 0.005; // Greater than 0.001
+
+// Number of sub-wallets
 export const subWalletNum = 20;
 
-//ChainId : Sepolia, BSC, Ethereum
-export const CHAINID:ChainId = ChainId.BSC;
+// Chain ID (e.g., BSC, Ethereum)
+export const CHAINID: ChainId = ChainId.BSC;
 ```
 
-Your wallet should have `(0.03 + 0.005) * 20 = 0.7 (BNB/ETH);
+Your wallet should have enough funds to cover `(amountMax + fee) * subWalletNum`. For example, with the above settings, approximately `0.7 BNB/ETH` is needed.
 
-I Recommend that you should use much fee value like 0.01 so that you can gather funds if you have some error while running the bot.
+**Tip:** Use a higher fee value like 0.01 to ensure successful transactions and fund collection in case of errors.
 
-While you are running the bot there will be a new json file to save the wallets you generated, so you can withdraw funds if there is a problem.
-
-I will add automatic fund-gathering function later if you want.
-
-
-Then you can run the bot
-```
+7. Run the bot:
+```bash
 npm run dev
 ```
 
-
 ## Features
 - Generating random wallets
-- Funding wallets that will trade as real traders
-- Random trade with funded wallets
-- Gathering funds after work
+- Funding wallets to simulate real traders
+- Randomized trading actions (buy/sell)
+- Collecting funds after trading
 
 ## Example
 
+![Example Image](https://github.com/user-attachments/assets/ac6e55f6-7ece-4cad-8dc7-883423c32f4e)
 
-https://github.com/user-attachments/assets/ac6e55f6-7ece-4cad-8dc7-883423c32f4e
+## Transaction Links
+- [BSCScan TX 1](https://bscscan.com/tx/0x581cda788080b52fbd5db8c4d3500c22a6c136a07b73e2311d1fc29330d48fe5)
+- [BSCScan TX 2](https://bscscan.com/tx/0x8c870cf1721c2c765b45d2b13731bf384ec2e8020552aafb0436c01ded98f2ab)
+- [BSCScan TX 3](https://bscscan.com/tx/0xb46d289c48d04dc6cc74849ecd9ef4fff6bf86aa3b16fc231d019b82c7789bc2)
 
-## Tx links
-https://bscscan.com/tx/0x581cda788080b52fbd5db8c4d3500c22a6c136a07b73e2311d1fc29330d48fe5
-https://bscscan.com/tx/0x8c870cf1721c2c765b45d2b13731bf384ec2e8020552aafb0436c01ded98f2ab
-https://bscscan.com/tx/0xb46d289c48d04dc6cc74849ecd9ef4fff6bf86aa3b16fc231d019b82c7789bc2
+## Future Plans
+- Randomizing trading amounts
+- Randomizing trading frequency (buy/sell)
+- Randomizing trading pools
 
-## Future
-- Randomizing trading amount
-- Randomizing trading frequency (Buy/Sell)
-- Randomizing the pool
+---
+
+## Contact Information
+
+For support, questions, or contributions, please contact me:
+
+- **Twitter:** [solzarr](https://x.com/0xmarcus0401)  
+- **Telegram:** [solzarr](https://t.me/solzarr)  
+
+Feel free to reach out for collaboration or suggestions!
+```
